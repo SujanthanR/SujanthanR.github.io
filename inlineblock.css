@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+section{
+    max-width: 49%;
+    min-width: 320px;
+    display:inline-block;
+    background-color:red;
+    vertical-align: top;
+    min-height: 490px;
+    padding:20px;
+}
+img{
+    float:right;
+}
+header{
+    display:block;
+}
