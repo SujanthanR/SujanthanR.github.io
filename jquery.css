@@ -1,0 +1,7 @@
+div#info{
+    display:none;
+    background-color: red;
+}
+button#openinfo{
+    cursor: pointer;
+}
