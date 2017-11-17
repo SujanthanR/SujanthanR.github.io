@@ -5,3 +5,11 @@ div#info{
 button#openinfo{
     cursor: pointer;
 }
+.selected{
+    color: red;
+    background-color: black;
+}
+input[type="color"]{
+    width:30px;
+    height:30px;
+}
