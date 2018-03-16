@@ -24,6 +24,12 @@ $(document).ready(function() {
     $("textarea").focusin(function(){
         $("textarea").text("", $(this).val());
     });
+    
+    $("#flugknapp").click(function(){
+        var x = Math.floor(Math.random()*800);
+        var y = Math.floor(Math.random()*500);
+        $("#bil").css({left:x,top:y});
+    });
 }); 
    
     

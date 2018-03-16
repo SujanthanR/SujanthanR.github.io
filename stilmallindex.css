@@ -1,17 +1,19 @@
-html, body{
-    margin: 0;
+body{
+    background: linear-gradient(110deg, #ec5212, #1334c1);
+    background-size: 400% 400%;
+    animation: ASSO 30s ease infinite;
 }
 header, main, footer{
     padding: 15px;
 }
-body{
-    background-color:black;
-    background-image: url(planet.jpg);
-    background-size: cover;
+@keyframes ASSO{
+    0%{background-position: 0% 50%;}
+    50%{background-position: 100% 50%;}
+    100{background-position: 0% 50%;}
 }
 header{
     text-align: center;
-    
+    font-family: cursive;
 
 }
 nav a{
@@ -27,8 +29,9 @@ nav a{
     
 }
 nav h3{
-    padding: 5px;
-    font-style:italic; 
+    padding: 1px;
+    font-family: cursive;
+    text-align: center;
 }
 nav{
     background-color:rgba(255,255,255,0.4);
@@ -42,7 +45,6 @@ main{background-color:rgba(255,255,255,0.1);
 footer{
     background-color:rgba(255,0,0,0.5);
     min-height:50px;
-    position: absolute;
     bottom: 0;
     width: 100%;
     border-radius:10px;
@@ -56,6 +58,7 @@ footer nav a{
     display:inline;
 }
 footer h3{
-    font-style: italic;
+    font-family: fantasy;
+    text-align: left
 }
 

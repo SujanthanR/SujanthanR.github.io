@@ -1,0 +1,46 @@
+body {
+    background: linear-gradient(to right, red , blue);
+    background-size: 400% 400%;
+    animation: ASSO 30s ease infinite;
+    font-family: "Raleway", sans-serif
+}
+
+@keyframes ASSO{
+    0%{background-position: 0% 50%;}
+    50%{background-position: 100% 50%;}
+    100{background-position: 0% 50%;}
+}
+
+h1{
+    text-align: center;
+}
+    
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid white;
+    background-color: white;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+li a.active {
+    color: white;
+    background-color:red;
+}
