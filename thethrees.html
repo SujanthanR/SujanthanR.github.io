@@ -4,76 +4,60 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>The Three:S</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="thethrees.js"></script>
         <link rel="stylesheet" href="thethrees.css">
     </head>
-    <body> 
-        <header> 
+    
+  <body> 
+    <header> 
         <h1>THE THREE:S</h1>
-        </header>    
-    <nav>
-        <uL>
-            <li><a class="active" href="#hem" id="k1">HEM</a></li>
-            <li><a href="sakerhet" id="k2">SÄKERHET</a></li>
-            <li><a href="standard" id="k3">STANDARD</a></li>
-            <li><a href="schysst" id="k4">SCHYSST</a></li>    
-        </uL>
-    </nav>
-        
-    <section><p id="sakerhet"> Säkerhet i webbsidor är 3 
-            
-            
-            
-            
-            
-            
-    </section>
+    </header>    
     
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'hem')" id="defaultOpen">About</button>
+        <button class="tablinks" onclick="openTab(event, 'safety')">Säkerhet</button>
+        <button class="tablinks" onclick="openTab(event, 'standard')">Standard</button>
+        <button class="tablinks" onclick="openTab(event, 'schysst')">Schysst</button>
+    </div>
+    <main>
+        <div id="hem" class="tabcontent">
+            <h3>Slutprojekt Webbutveckling</h3>
+            <p>Webbplatsen ska informera om och resonera om olika aspekter på ”Tre S” (Säkerhet, Standard, Schysst) att tänka på om man sysslar med webbutveckling.</p>
+            <img src="webut.jpg" alt="auto" title="Webutveckling">
+        </div>
+
+        <div id="safety" class="tabcontent">
+            <h3>Säkerhet</h3>
+            <p>London is the capital city of England.</p>
+            img src="security.jpg" alt="auto" title="Säkerhet"   
+        </div>
+
+        <div id="standard" class="tabcontent">
+            <h3>Standard</h3>
+            <p>Paris is the capital of France.</p> 
+        </div>
+
+        <div id="schysst" class="tabcontent">
+            <h3>Schysst</h3>
+            <p>Schysst på Nätet</p>
+        </div>
+    </main>
     
-    
-    <footer>
+    <script>    
+        document.getElementById("defaultOpen").click();
+    </script>
+
         
-        
-        
-        
-        
-        
-        
+   <footer>
+        <nav>
+        <h3>Kontakt & information</h3>
+        <a href="https://sujanthanr.github.io/index.html">Hem</a>  
+        <a href="http://ullvi.koping.se/">Ullvigymnasiet</a>  
+        <a href="https://koping.se/">Köpings Kommun</a>   
+        <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fmagnusasvik.github.io%2F">W3 Validator</a>
+        </nav>
     </footer>
-        
-    
-            
-            
-            
-            
-            
-            
-            
-            
-            
-    
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-    </body>
+  
+  </body>
 </html>
-            
-            
