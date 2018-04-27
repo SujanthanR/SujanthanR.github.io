@@ -1,6 +1,7 @@
 var GameState2 ={
     create: function(){
         
+        //har ej nyckeln
         hasKey1 = false;
         
         this.add.tileSprite(0, 0, 960, 600, 'background:2');
@@ -10,6 +11,7 @@ var GameState2 ={
         
         ground = this.add.sprite(0, 546, 'ground');
         
+        //plattformarna på spelet
         platform1 = this.add.sprite(0, 420, 'grass:8x1');
         platform2 = this.add.sprite(420, 336, 'grass:2x1');
         platform3 = this.add.sprite(588, 504, 'grass:1x1');
@@ -22,7 +24,9 @@ var GameState2 ={
         //enemies osynliga väggar
         enemywall1 = this.add.sprite(0, 380, 'invisible-wall');
         enemywall1.visible = false;
-        enemywall2 = this.add.sprite(330, 380, 'invisible-wall');               enemywall2.visible = false;
+        enemywall2 = this.add.sprite(330, 380, 'invisible-wall');      
+        //osynliga väggar till enemies 
+        enemywall2.visible = false;
         enemywall3 = this.add.sprite(655, 338, 'invisible-wall');
         enemywall3.visible = false;
         enemywall4 = this.add.sprite(955, 338, 'invisible-wall');
@@ -36,7 +40,6 @@ var GameState2 ={
         enemy1 = this.add.sprite(121, 399, 'spider');
         enemy2 = this.add.sprite(720, 362, 'spider');
         enemy3 = this.add.sprite(500, 147, 'spider');
-        enemy4 = this.add.sprite(0, 546, 'spider');
         
         //nycklen & dörren till den 
         key1 = this.add.sprite(903, 105, 'key');
@@ -65,9 +68,10 @@ var GameState2 ={
         coin12 = this.add.sprite(840, 357, 'coin');
         coin13 = this.add.sprite(900, 357, 'coin');
         
-        
+        //fysik för myntarna
         game.physics.enable([coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9 ,coin10, coin11, coin12, coin13], Phaser.Physics.ARCADE);
         
+        //Fysik och så att de inte flyttar på sig
         coin1.body.allowGravity = false;
         coin1.body.immovable = true;
         coin2.body.allowGravity = false;
@@ -95,18 +99,20 @@ var GameState2 ={
         coin13.body.allowGravity = false;
         coin13.body.immovable = true;
         
-
+        //player, hero 
         hero = this.add.sprite(21, 525, 'hero');
         hero.inputEnabled = true;
         
             
-        
+        //fysik för alla objekt
         this.game.physics.enable([hero, ground, platform1, platform2, platform3, platform4, platform5, platform6, platform7, enemy1, enemy2, enemy3, enemywall1, enemywall2, enemywall3, enemywall4, enemywall5, enemywall6, key1, checkpoint], Phaser.Physics.ARCADE);
         
+        //player studs när han landar, gravitationen och var playern är förankrad
         hero.body.bounce.y = 0.2;
         hero.body.gravity.y = 600;
         hero.anchor.setTo(0.5);
         
+        //enemies studs. gravitationen, var enemeis är förankrad och så att enemies inte hamnar utanför spelet
         enemy1.body.bounce.y = 0.2;
         enemy1.body.bounce.x = 1;
         enemy1.body.gravity.y = 0;
@@ -128,13 +134,7 @@ var GameState2 ={
         
         enemy3.collideWorldBounds =true;
         
-        enemy4.body.bounce.y = 0.2;
-        enemy4.body.bounce.x = 1;
-        enemy4.body.gravity.y = 0;
-        enemy4.anchor.setTo(0.5);
-        
-        enemy4.collideWorldBounds =true;
-        
+       //osynliga väggarnas gravitation och så att de inte flyttar på sig. 
         enemywall1.body.allowGravity = false;
         enemywall1.body.immovable = true;
         enemywall2.body.allowGravity = false;
@@ -148,9 +148,11 @@ var GameState2 ={
         enemywall6.body.allowGravity = false;
         enemywall6.body.immovable = true;
         
+        //markens gravitation och så att den inte flyttar på sig
         ground.body.allowGravity = false;
         ground.body.immovable = true;
         
+        //plattformarnas gravitation och så att de inte flyttar på sig.
         platform1.body.allowGravity = false;
         platform1.body.immovable = true;
         platform2.body.allowGravity = false;
@@ -166,9 +168,11 @@ var GameState2 ={
         platform7.body.allowGravity = false;
         platform7.body.immovable = true;
         
+        //nyckelns gravitation, dörrens gravitation och dörren ej flyttbar.
         key1.body.allowGravity = false;
         checkpoint.body.allowGravity = false;
         checkpoint.body.immovable =  true;
+        
         //får nyckeln att röra sig i luften.
         key1.y -= 10;
         this.game.add.tween(key1)
@@ -178,15 +182,15 @@ var GameState2 ={
             .start();
         
        
-        pil = this.input.keyboard.createCursorKeys();
+        //Knappen för playern för jump.
         JumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         
-        
+        //animationer för playern
         hero.animations.add('stop', [0]);
         hero.animations.add('run', [1,2], 8, true);
         hero.animations.add('jump', [3]);
-        hero.animations.add('fall', [4]);
         
+        //animationen för enemies
         enemy1.animations.add('crawl', [0, 1, 2], 8, true); // 8fps, looped
         enemy1.animations.play('crawl');
         
@@ -195,6 +199,7 @@ var GameState2 ={
         
         enemy3.animations.add('crawl', [0, 1, 2], 8, true); // 8fps, looped
         enemy3.animations.play('crawl');
+        
         
         
         //Coins rotation animation
@@ -228,13 +233,17 @@ var GameState2 ={
         //Så att gubben inte försvinner från spelet
         hero.body.collideWorldBounds = true;
         
-    
+        //bakgrund och spelmusik
+        musik = this.add.audio('bgmusic');
+        musik.play()
+        jump = this.add.audio('jump');
+        coin = this.add.audio('coin');
+        
+        //enemies hastighet
         enemy1.body.velocity.x = 100;
         enemy2.body.velocity.x = 100;
         enemy3.body.velocity.x = 100;
-       
-    
-        
+
     
     },
        
@@ -242,61 +251,56 @@ var GameState2 ={
 
     update: function(){        
             
-            console.log(hasKey1);
-            if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-                hero.animations.play('run');
-                hero.body.velocity.x = 300;
-                hero.scale.x = 1;
-            }else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
-                hero.animations.play('run');
-                hero.body.velocity.x = -200;
-                hero.scale.x = -1;               
-            }else{
-                hero.animations.play('stop')
-                hero.body.velocity.x = 0;
-            }
+        if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+            hero.animations.play('run');
+            hero.body.velocity.x = 300;
+            hero.scale.x = 1;
+        }else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+            hero.animations.play('run');
+            hero.body.velocity.x = -200;
+            hero.scale.x = -1;               
+        }else{
+            hero.animations.play('stop')
+            hero.body.velocity.x = 0;
+        }
             
             
-            this.game.physics.arcade.overlap(hero, [key1], this.collectkey, null, this);
+        this.game.physics.arcade.overlap(hero, [key1], this.collectkey, null, this);
         
-            this.physics.arcade.collide(hero,[ground, platform1, platform2, platform3, platform4, platform5, platform6, platform7]);
+        this.physics.arcade.collide(hero,[ground, platform1, platform2, platform3, platform4, platform5, platform6, platform7]);
         
-            this.physics.arcade.collide(enemy1,[platform1, enemywall1, enemywall2]);
+        this.physics.arcade.collide(enemy1,[platform1, enemywall1, enemywall2]);
         
-            this.physics.arcade.collide(enemy2,[platform4, enemywall3, enemywall4]);
+        this.physics.arcade.collide(enemy2,[platform4, enemywall3, enemywall4]);
         
-            this.physics.arcade.collide(enemy3,[platform6, enemywall5, enemywall6]);
+        this.physics.arcade.collide(enemy3,[platform6, enemywall5, enemywall6]);
+        
             
-            this.game.physics.arcade.overlap(hero,[coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9, coin10, coin11, coin12, coin13],this.collectcoin, null, this);
+        this.game.physics.arcade.overlap(hero,[coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9, coin10, coin11, coin12, coin13],this.collectcoin, null, this);
         
 
         
-            if(JumpButton.isDown && hero.body.touching.down){
-                hero.body.velocity.y = -700;
-            }
-            if(JumpButton.isDown){
-                hero.animations.play('jump');
-            }
+        if(JumpButton.isDown && hero.body.touching.down){
+            hero.body.velocity.y = -700;
+            jump.play();
+        }
+        if(JumpButton.isDown){
+            hero.animations.play('jump');
+           
+        }
         
-            
-            
-            
-        
-            
-        
-        //this.game.physics.arcade.overlap(hero, checkpoint, this.ny, null, this);
         
         if(this.game.physics.arcade.overlap(hero, checkpoint) && hasKey1){
-        console.log("ok");
-        this.game.state.start("GameWin", true, false);
-        }
-        if(this.physics.arcade.collide(hero, [enemy1, enemy2, enemy3])){
-        this.state.start('GameOver', true, false);
+            this.game.state.start("GameWin", true, false);
         }
         
-         if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
-             this.game.state.start("GameWin", true, false);
-         }
+        if(this.physics.arcade.collide(hero, [enemy1, enemy2, enemy3])){
+            this.state.start('GameOver', true, false);
+        }
+        
+        if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+            this.game.state.start("GameWin", true, false);
+        }  
         
     
     },
@@ -306,16 +310,18 @@ var GameState2 ={
     },
     
     collectcoin: function(hero, coin1){
-         coin1.kill();
+        coin1.kill();
         this.coinPickupCount++;
         this.text.setText("x " + this.coinPickupCount);
+        coin.play();
     
         
     },
     
     collectkey: function(hero, key){
         key.kill();
-        hasKey1 = true; 
+        hasKey1 = true;
+        coin.play();
     }
 
 };

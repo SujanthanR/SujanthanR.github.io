@@ -14,11 +14,11 @@ var GameStart = {
         this.game.load.image('key', 'assets/key.png');
         this.game.load.image('play', 'assets/playbutt.png')
         
-        //this.game.load.audio('sfx:jump', 'audio/jump.wav');
-        //this.game.load.audio('sfx:coin', 'audio/coin.wav');
-        //this.game.load.audio('sfx:stomp', 'audio/stomp.wav');
-        //this.game.load.audio('sfx:key', 'audio/key.wav');
-        //this.game.load.audio('sfx:door', 'audio/door.wav');
+        this.game.load.audio('bgmusic', 'audio/bgm.mp3')
+        this.game.load.audio('jump', 'audio/jump.wav');
+        this.game.load.audio('coin', 'audio/coin.wav');
+        this.game.load.audio('key', 'audio/key.wav');
+        this.game.load.audio('door', 'audio/door.wav');
         
         this.game.load.spritesheet('hero', 'assets/hero.png', 36, 42);
         this.game.load.spritesheet('coin', 'assets/coin_animated.png', 22, 22);

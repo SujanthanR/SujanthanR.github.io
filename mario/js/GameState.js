@@ -220,6 +220,11 @@ var GameState ={
         hero.body.collideWorldBounds = true;
         
     
+        musik = this.add.audio('bgmusic');
+        musik.play()
+        jump = this.add.audio('jump');
+        coin = this.add.audio('coin');
+        
         enemy1.body.velocity.x = 100;
         enemy2.body.velocity.x = 100;
         enemy3.body.velocity.x = 100;
@@ -300,13 +305,14 @@ var GameState ={
          coin1.kill();
         this.coinPickupCount++;
         this.text.setText("x " + this.coinPickupCount);
-    
+        coin.play();
         
     },
     
     collectkey: function(hero, key){
         key.kill();
-        hasKey1 = true; 
+        hasKey1 = true;
+        coin.play();
     }
 
 };
