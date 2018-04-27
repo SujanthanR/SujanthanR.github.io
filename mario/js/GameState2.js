@@ -1,8 +1,9 @@
-var hasKey1 = false;
-
-var GameState ={
+var GameState2 ={
     create: function(){
-        this.add.tileSprite(0, 0, 960, 600, 'background');
+        
+        hasKey1 = false;
+        
+        this.add.tileSprite(0, 0, 960, 600, 'background:2');
         
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.physics.arcade.gravity.y = 1200;
@@ -35,6 +36,7 @@ var GameState ={
         enemy1 = this.add.sprite(121, 399, 'spider');
         enemy2 = this.add.sprite(720, 362, 'spider');
         enemy3 = this.add.sprite(500, 147, 'spider');
+        enemy4 = this.add.sprite(0, 546, 'spider');
         
         //nycklen & dörren till den 
         key1 = this.add.sprite(903, 105, 'key');
@@ -125,6 +127,13 @@ var GameState ={
         enemy3.anchor.setTo(0.5);
         
         enemy3.collideWorldBounds =true;
+        
+        enemy4.body.bounce.y = 0.2;
+        enemy4.body.bounce.x = 1;
+        enemy4.body.gravity.y = 0;
+        enemy4.anchor.setTo(0.5);
+        
+        enemy4.collideWorldBounds =true;
         
         enemywall1.body.allowGravity = false;
         enemywall1.body.immovable = true;
@@ -279,14 +288,14 @@ var GameState ={
         
         if(this.game.physics.arcade.overlap(hero, checkpoint) && hasKey1){
         console.log("ok");
-        this.game.state.start("GameState2", true, false);
+        this.game.state.start("GameWin", true, false);
         }
         if(this.physics.arcade.collide(hero, [enemy1, enemy2, enemy3])){
         this.state.start('GameOver', true, false);
         }
         
-        if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
-             this.game.state.start("GameState2", true, false);
+         if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+             this.game.state.start("GameWin", true, false);
          }
         
     

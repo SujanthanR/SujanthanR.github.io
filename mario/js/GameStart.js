@@ -2,6 +2,7 @@ var GameStart = {
     
     preload: function(){
         this.game.load.image('background', 'assets/background.png');
+        this.game.load.image('background:2', 'assets/background2.png');
         this.game.load.image('ground', 'assets/ground.png');
         this.game.load.image('grass:8x1', 'assets/grass_8x1.png');
         this.game.load.image('grass:6x1', 'assets/grass_6x1.png');
