@@ -14,12 +14,12 @@ var GameStart = {
         this.game.load.image('icon:coin', 'assets/coin_icon.png');
         this.game.load.image('key', 'assets/key.png');
         this.game.load.image('play', 'assets/playbutt.png');
-        this.game.load.image("jumpbutton", 'assets/jumpbutton.png');
         this.game.load.image('rightkey', 'assets/rightkey.png');
         this.game.load.image('leftkey', 'assets/leftkey.png');
         this.game.load.image('restart', 'assets/restart.png');
+        this.game.load.image('jumper', 'assets/jump.png');
         
-        this.game.load.audio('bgmusic', 'audio/bgm.mp3')
+        this.game.load.audio('bgmusic', 'audio/bgm.mp3');
         this.game.load.audio('jump', 'audio/jump.wav');
         this.game.load.audio('coin', 'audio/coin.wav');
         this.game.load.audio('key', 'audio/key.wav');
@@ -45,11 +45,11 @@ var GameStart = {
         
         //navigationshjälp. 
         this.add.text(420, 400, "How to play :", {fontSize: "20px", fill: "#fff"});
+                
         
-        this.add.image(380, 430, "jumpbutton");
+        this.add.image(380,430, 'jumper');
+        this.add.text(420, 480, "SPACEBAR", {fontSize: "20px", fill: "#fff"});
         
-        var spacebar = this.add.text(game.world.centerX, 500, "SPACEBAR", {fontSize: "20px", fill: "#fff"});
-        spacebar.anchor.setTo(0.5);
         
         this.add.image(600, 440, 'rightkey');
         this.add.text(600, 480, "Right", {fontSize: "15px", fill: "#fff"});
