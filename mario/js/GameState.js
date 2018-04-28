@@ -267,9 +267,11 @@ var GameState ={
 
         
         if(JumpButton.isDown && hero.body.touching.down){                                  hero.body.velocity.y = -700;
+             jump.play();
         }
         if(JumpButton.isDown){
             hero.animations.play('jump');
+            
         }
         
 

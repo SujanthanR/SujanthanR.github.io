@@ -46,7 +46,7 @@ var GameStart = {
         //navigationshjälp. 
         this.add.text(420, 400, "How to play :", {fontSize: "20px", fill: "#fff"});
         
-        this.add.image(380, 430, "jumpbutton")
+        this.add.image(380, 430, "jumpbutton");
         
         var spacebar = this.add.text(game.world.centerX, 500, "SPACEBAR", {fontSize: "20px", fill: "#fff"});
         spacebar.anchor.setTo(0.5);
