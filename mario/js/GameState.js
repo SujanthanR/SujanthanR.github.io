@@ -38,11 +38,11 @@ var GameState ={
         
         //nycklen & dörren till den 
         key1 = this.add.sprite(903, 105, 'key');
-        checkpoint = this.add.sprite(169, 546, 'door')
+        checkpoint = this.add.sprite(169, 546, 'door');
         checkpoint.anchor.setTo(0.5, 1);
         
         //räknare för mynten
-        iconcoin = this.add.sprite(20, 10, 'icon:coin')
+        iconcoin = this.add.sprite(20, 10, 'icon:coin');
         
         this.text = game.add.text(65, 15,"x 0", { font: "25px Arial", fill: "#fff"});
 
