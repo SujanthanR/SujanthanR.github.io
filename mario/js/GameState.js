@@ -160,6 +160,7 @@ var GameState ={
         key1.body.allowGravity = false;
         checkpoint.body.allowGravity = false;
         checkpoint.body.immovable =  true;
+        
         //får nyckeln att röra sig i luften.
         key1.y -= 10;
         this.game.add.tween(key1)
@@ -169,21 +170,20 @@ var GameState ={
             .start();
         
        
-        pil = this.input.keyboard.createCursorKeys();
+        //Navigation för jump
         JumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         
-        
+        //playerns animationer
         hero.animations.add('stop', [0]);
         hero.animations.add('run', [1,2], 8, true);
         hero.animations.add('jump', [3]);
         hero.animations.add('fall', [4]);
         
+        //enemies Animationer
         enemy1.animations.add('crawl', [0, 1, 2], 8, true); // 8fps, looped
-        enemy1.animations.play('crawl');
-        
+        enemy1.animations.play('crawl'); 
         enemy2.animations.add('crawl', [0, 1, 2], 8, true); // 8fps, looped
         enemy2.animations.play('crawl');
-        
         enemy3.animations.add('crawl', [0, 1, 2], 8, true); // 8fps, looped
         enemy3.animations.play('crawl');
         
@@ -221,7 +221,7 @@ var GameState ={
         
     
         musik = this.add.audio('bgmusic');
-        musik.play()
+        musik.play();
         jump = this.add.audio('jump');
         coin = this.add.audio('coin');
         
@@ -238,77 +238,64 @@ var GameState ={
 
     update: function(){        
             
-            console.log(hasKey1);
-            if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-                hero.animations.play('run');
-                hero.body.velocity.x = 300;
-                hero.scale.x = 1;
-            }else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
-                hero.animations.play('run');
-                hero.body.velocity.x = -200;
-                hero.scale.x = -1;               
-            }else{
-                hero.animations.play('stop')
-                hero.body.velocity.x = 0;
-            }
+        if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+            hero.animations.play('run');
+            hero.body.velocity.x = 300;
+            hero.scale.x = 1;
+        }else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+            hero.animations.play('run');
+            hero.body.velocity.x = -200;
+            hero.scale.x = -1;               
+        }else{
+            hero.animations.play('stop')
+            hero.body.velocity.x = 0;
+        }
             
             
-            this.game.physics.arcade.overlap(hero, [key1], this.collectkey, null, this);
+        this.game.physics.arcade.overlap(hero, [key1], this.collectkey, null, this);
         
-            this.physics.arcade.collide(hero,[ground, platform1, platform2, platform3, platform4, platform5, platform6, platform7]);
+        this.physics.arcade.collide(hero,[ground, platform1, platform2, platform3, platform4, platform5, platform6, platform7]);
         
-            this.physics.arcade.collide(enemy1,[platform1, enemywall1, enemywall2]);
-        
-            this.physics.arcade.collide(enemy2,[platform4, enemywall3, enemywall4]);
-        
-            this.physics.arcade.collide(enemy3,[platform6, enemywall5, enemywall6]);
+        this.physics.arcade.collide(enemy1,[platform1, enemywall1, enemywall2]);
+    
+        this.physics.arcade.collide(enemy2,[platform4, enemywall3, enemywall4]);
+    
+        this.physics.arcade.collide(enemy3,[platform6, enemywall5, enemywall6]);
             
-            this.game.physics.arcade.overlap(hero,[coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9, coin10, coin11, coin12, coin13],this.collectcoin, null, this);
+        this.game.physics.arcade.overlap(hero,[coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9, coin10, coin11, coin12, coin13],this.collectcoin, null, this);
         
 
         
-            if(JumpButton.isDown && hero.body.touching.down){
-                hero.body.velocity.y = -700;
-            }
-            if(JumpButton.isDown){
-                hero.animations.play('jump');
-            }
+        if(JumpButton.isDown && hero.body.touching.down){                                  hero.body.velocity.y = -700;
+        }
+        if(JumpButton.isDown){
+            hero.animations.play('jump');
+        }
         
-            
-            
-            
-        
-            
-        
-        //this.game.physics.arcade.overlap(hero, checkpoint, this.ny, null, this);
+
         
         if(this.game.physics.arcade.overlap(hero, checkpoint) && hasKey1){
-        console.log("ok");
-        this.game.state.start("GameState2", true, false);
+            this.game.state.start("GameState2", true, false); 
         }
         if(this.physics.arcade.collide(hero, [enemy1, enemy2, enemy3])){
-        this.state.start('GameOver', true, false);
+            this.state.start('GameOver', true, false);
         }
-        
-        if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
-             this.game.state.start("GameState2", true, false);
-         }
         
     
     },
-    
+    //räkningen av tagna guldmynt
     init: function(){
         this.coinPickupCount = 0;
     },
-    
+    //Funktion som gör så att player plockar upp guldmynten och ljudet till den.
     collectcoin: function(hero, coin1){
-         coin1.kill();
+        coin1.kill();
         this.coinPickupCount++;
         this.text.setText("x " + this.coinPickupCount);
         coin.play();
         
     },
-    
+    //Funktion som gör så att player plockar upp nyckeln och ljudet till den.
     collectkey: function(hero, key){
         key.kill();
         hasKey1 = true;

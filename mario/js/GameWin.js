@@ -1,18 +1,25 @@
 var GameWin = {
+
+    
     create: function(){
+        
+        musik.stop();
+        
         this.add.tileSprite(0, 0, 964, 600, "background");
         
-        var stil = {font: "25px Arial", fill: "#000"};
+        var stil = {font: "50px Times", fill: "#000"};
         
-        var text = this.add.text(game.world.centerX, game.world.centerY, "You Won", stil);
+        var text = this.add.text(game.world.centerX, game.world.centerY, "Coungratulations, You Won!", stil);
         text.anchor.setTo(0.5);  
-    
-        var omstart = game.add.button(100, 300, "restart");
+        
+        this.add.text(700, 450, 'Made by: Sujanthan.R', {font: '20px Times', fill: '#fff'});
+        
+        var omstart = game.add.button(game.world.centerX, 500, "restart");
         omstart.anchor.setTo(0.5);
         
         
         omstart.events.onInputUp.add(function(){
-            this.state.start("GameState", true, false);
+            this.state.start("GameStart", true, false);
         },this);
    
         }

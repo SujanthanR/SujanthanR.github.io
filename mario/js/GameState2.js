@@ -3,6 +3,7 @@ var GameState2 ={
         
         //har ej nyckeln
         hasKey1 = false;
+        musik.stop();
         
         this.add.tileSprite(0, 0, 960, 600, 'background:2');
         
@@ -43,7 +44,7 @@ var GameState2 ={
         
         //nycklen & dörren till den 
         key1 = this.add.sprite(903, 105, 'key');
-        checkpoint = this.add.sprite(169, 546, 'door')
+        checkpoint = this.add.sprite(150, 252, 'door')
         checkpoint.anchor.setTo(0.5, 1);
         
         //räknare för mynten
@@ -250,7 +251,8 @@ var GameState2 ={
 
 
     update: function(){        
-            
+        
+        //Hastighet, navigation och animation
         if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
             hero.animations.play('run');
             hero.body.velocity.x = 300;
@@ -264,22 +266,24 @@ var GameState2 ={
             hero.body.velocity.x = 0;
         }
             
-            
+        //Playern overlappar key   
         this.game.physics.arcade.overlap(hero, [key1], this.collectkey, null, this);
         
+        //playerns collision med plattform och marken.
         this.physics.arcade.collide(hero,[ground, platform1, platform2, platform3, platform4, platform5, platform6, platform7]);
         
+        //enemies kollision med sina plattformar och osynliga väggar
         this.physics.arcade.collide(enemy1,[platform1, enemywall1, enemywall2]);
         
         this.physics.arcade.collide(enemy2,[platform4, enemywall3, enemywall4]);
         
         this.physics.arcade.collide(enemy3,[platform6, enemywall5, enemywall6]);
         
-            
+        //playern plockar guldmynten
         this.game.physics.arcade.overlap(hero,[coin1, coin2, coin3, coin4, coin5, coin6, coin7, coin8, coin9, coin10, coin11, coin12, coin13],this.collectcoin, null, this);
         
 
-        
+        //navigation, hastighet för jump och animation
         if(JumpButton.isDown && hero.body.touching.down){
             hero.body.velocity.y = -700;
             jump.play();
@@ -289,18 +293,15 @@ var GameState2 ={
            
         }
         
-        
+        //om playern har nyckeln till dörren så övergår det till nästa state
         if(this.game.physics.arcade.overlap(hero, checkpoint) && hasKey1){
             this.game.state.start("GameWin", true, false);
         }
         
+        //om playern kolliderar med enemies så övergår det till GameOver
         if(this.physics.arcade.collide(hero, [enemy1, enemy2, enemy3])){
             this.state.start('GameOver', true, false);
         }
-        
-        if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
-            this.game.state.start("GameWin", true, false);
-        }  
         
     
     },
