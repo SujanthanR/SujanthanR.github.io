@@ -9,7 +9,7 @@ var GameWin = {
         
         var stil = {font: "50px Times", fill: "#000"};
         
-        var text = this.add.text(game.world.centerX, game.world.centerY, "Coungratulations, You Won!", stil);
+        var text = this.add.text(game.world.centerX, game.world.centerY, "Congratulations, You Won!", stil);
         text.anchor.setTo(0.5);  
         
         this.add.text(700, 450, 'Made by: Sujanthan.R', {font: '20px Times', fill: '#fff'});
